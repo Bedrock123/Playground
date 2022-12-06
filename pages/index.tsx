@@ -172,7 +172,9 @@ const Hero = () => {
         gradient={{ from: "yellow", to: "cyan", deg: 45 }}
         mt="0.2rem"
         sx={{
-          letterSpacing: "-.015em",
+          letterSpacing: "-.025em",
+          backgroundImage:
+            "linear-gradient(to right, #f06844 0%, #ee4c54 25%, #d45e95 50%, #9c6ca6 75%, #6583c1 100%)",
         }}
       >
         Pay for your new Apple products over time, interest free

@@ -3,9 +3,7 @@ import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
 import { Inter } from "@next/font/google";
 
-const inter = Inter({
-  preload: true,
-});
+const inter = Inter({ subsets: ["latin"], preload: true });
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;

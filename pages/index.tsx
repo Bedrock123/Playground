@@ -190,6 +190,7 @@ const Hero = () => {
       <Image
         src={GearPhoto}
         alt="Picture of the gear"
+        priority
         width={924}
         quality={100}
         placeholder="blur"

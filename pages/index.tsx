@@ -8,10 +8,15 @@ import {
 } from "@mantine/core";
 import owlPhoto from "../public/owl.jpg";
 import Image from "next/image";
+import { NextSeo } from "next-seo";
 
 export default function Home() {
   return (
     <Box h="100%" w="100%">
+      <NextSeo
+        title="Simple Usage Example"
+        description="A short description goes here."
+      />
       <Container mt="xl" size="sm" py="xl">
         <Title size="h2" mb="lg">
           To Whom To May Concern.

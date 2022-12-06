@@ -166,7 +166,7 @@ const Hero = () => {
     <Container size={1024} pt={100}>
       <Title
         size={"93px"}
-        lh="98px"
+        lh="104px"
         weight={700}
         variant="gradient"
         gradient={{ from: "yellow", to: "cyan", deg: 45 }}
@@ -177,8 +177,9 @@ const Hero = () => {
       >
         Pay for your new Apple products over time, interest free
       </Title>
-      <Title order={3} size="h1">
-        when you choose to check out with Apple Card Monthly Installments.1
+      <Title order={3} size="h1" lh="40px" mt="sm">
+        when you choose to check out with <br /> Apple Card Monthly
+        Installments.<sup style={{ fontSize: "20px" }}>1</sup>
       </Title>
     </Container>
   );

@@ -106,7 +106,7 @@ function TopNavLink({ link }: { link: string }) {
     <Text
       size="xs"
       sx={{
-        opacity: 0.88,
+        opacity: 0.98,
         cursor: "pointer",
         fontSize: "12px",
         transition: "all 0.2s",
@@ -136,8 +136,8 @@ function TopNav() {
         zIndex: 1,
         backgroundColor: atTop ? "rgba(255,255,255,0.72)" : "#f5f5f7",
         borderBottom: atTop ? "1px solid #d7d7d7" : "1px solid #f5f5f7",
-        backdropFilter: atTop && "saturate(180%) blur(20px)",
         transition: "all 0.2s",
+        backdropFilter: atTop ? "saturate(180%) blur(20px)" : "",
       }}
     >
       <Container size={1024}>
@@ -145,7 +145,7 @@ function TopNav() {
           <Title size="21px" weight={600}>
             Apple Card
           </Title>
-          <Group spacing="23px">
+          <Group spacing={23}>
             <TopNavLink link="Overview" />
             <TopNavLink link="Features" />
             <TopNavLink link="Family" />
@@ -161,6 +161,29 @@ function TopNav() {
   );
 }
 
+const Hero = () => {
+  return (
+    <Container size={1024} pt={100}>
+      <Title
+        size={"93px"}
+        lh="98px"
+        weight={700}
+        variant="gradient"
+        gradient={{ from: "yellow", to: "cyan", deg: 45 }}
+        mt="0.2rem"
+        sx={{
+          letterSpacing: "-.015em",
+        }}
+      >
+        Pay for your new Apple products over time, interest free
+      </Title>
+      <Title order={3} size="h1">
+        when you choose to check out with Apple Card Monthly Installments.1
+      </Title>
+    </Container>
+  );
+};
+
 export default function Home() {
   return (
     <Box mih={"200vh"}>
@@ -170,21 +193,7 @@ export default function Home() {
       />
       <TopMenu />
       <TopNav />
-      <Container size={1024} pt={100}>
-        <Title
-          size={"93px"}
-          lh="98px"
-          weight={700}
-          variant="gradient"
-          gradient={{ from: "yellow", to: "cyan", deg: 45 }}
-          mt="0.2rem"
-          sx={{
-            letterSpacing: "-.015em",
-          }}
-        >
-          Pay for your new Apple products over time, interest free
-        </Title>
-      </Container>
+      <Hero />
     </Box>
   );
 }

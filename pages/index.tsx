@@ -38,6 +38,7 @@ function TopMenu() {
         <Flex align="center" justify="space-between" py={0}>
           <Image
             width={14}
+            height={44}
             src="https://www.apple.com/ac/globalnav/7/en_US/images/be15095f-5a20-57d0-ad14-cf4c638e223a/globalnav_apple_image__b5er5ngrzxqq_large.svg"
             alt="Apple Logo"
             sx={{
@@ -60,7 +61,7 @@ function TopMenu() {
           <MenuLink link="Accesories" />
           <MenuLink link="Support" />
           <Box
-            px="xs"
+            px={4}
             sx={{
               backgroundImage:
                 "url(https://www.apple.com/ac/globalnav/7/en_US/images/be15095f-5a20-57d0-ad14-cf4c638e223a/globalnav_search_image__cbllq1gkias2_large.svg)",
@@ -78,7 +79,7 @@ function TopMenu() {
             }}
           />
           <Box
-            px="xs"
+            px={4}
             sx={{
               backgroundImage:
                 "url(https://www.apple.com/ac/globalnav/7/en_US/images/be15095f-5a20-57d0-ad14-cf4c638e223a/globalnav_bag_image__yzte50i47ciu_large.svg)",
@@ -168,6 +169,7 @@ const Hero = () => {
         size={"93px"}
         lh="104px"
         weight={700}
+        order={2}
         variant="gradient"
         gradient={{ from: "yellow", to: "cyan", deg: 45 }}
         mt="0.2rem"

@@ -1,5 +1,5 @@
 import {
-  Image,
+  Image as MantineImage,
   Container,
   Button,
   Box,
@@ -11,6 +11,8 @@ import {
 } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
 import { NextSeo } from "next-seo";
+import GearPhoto from "../public/gear.jpg";
+import Image from "next/image";
 
 function MenuLink({ link }: { link: string }) {
   return (
@@ -36,7 +38,7 @@ function TopMenu() {
     <Box component="header" bg="black">
       <Container size={1024} h={44}>
         <Flex align="center" justify="space-between" py={0}>
-          <Image
+          <MantineImage
             width={14}
             height={44}
             src="https://www.apple.com/ac/globalnav/7/en_US/images/be15095f-5a20-57d0-ad14-cf4c638e223a/globalnav_apple_image__b5er5ngrzxqq_large.svg"
@@ -181,10 +183,17 @@ const Hero = () => {
       >
         Pay for your new Apple products over time, interest free
       </Title>
-      <Title order={3} size="h1" lh="40px" mt="sm">
+      <Title order={3} size="h1" lh="40px" mt="sm" mb={100}>
         when you choose to check out with <br /> Apple Card Monthly
         Installments.<sup style={{ fontSize: "20px" }}>1</sup>
       </Title>
+      <Image
+        src={GearPhoto}
+        alt="Picture of the gear"
+        width={924}
+        quality={100}
+        placeholder="blur"
+      />
     </Container>
   );
 };

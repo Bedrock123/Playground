@@ -193,7 +193,6 @@ const Hero = () => {
         priority
         width={924}
         quality={100}
-        placeholder="blur"
       />
     </Container>
   );

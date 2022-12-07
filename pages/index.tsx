@@ -8,6 +8,9 @@ import {
   Group,
   Flex,
   TextProps,
+  MediaQuery,
+  Center,
+  AspectRatio,
 } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
 import { NextSeo } from "next-seo";
@@ -164,12 +167,12 @@ function TopNav() {
   );
 }
 
-const Hero = () => {
+const Hero = ({ title, image }: { title: string; image: string }) => {
   return (
     <Container size={1024} pt={100}>
       <Title
-        size={"93px"}
-        lh="104px"
+        fz={{ base: "60px", md: "93px" }}
+        lh={{ base: "60px", md: "104px" }}
         weight={700}
         order={2}
         variant="gradient"
@@ -181,24 +184,28 @@ const Hero = () => {
             "linear-gradient(to right, #f06844 0%, #ee4c54 25%, #d45e95 50%, #9c6ca6 75%, #6583c1 100%)",
         }}
       >
-        Pay for your new Apple products over time, interest free
+        {title}
       </Title>
       <Title order={3} size="h1" lh="40px" mt="sm" mb={100}>
         when you choose to check out with <br /> Apple Card Monthly
         Installments.<sup style={{ fontSize: "20px" }}>1</sup>
       </Title>
-      <Image
-        src={GearPhoto}
-        alt="Picture of the gear"
-        priority
-        width={924}
-        quality={100}
-      />
+
+      <AspectRatio ratio={4 / 4}>
+        <Image
+          src={image}
+          alt="Picture of the gear"
+          priority
+          width={924}
+          height={924}
+          quality={3}
+        />
+      </AspectRatio>
     </Container>
   );
 };
 
-export default function Home() {
+export default function Home({ posts, image }: { posts: any; image: any }) {
   return (
     <Box mih={"200vh"}>
       <NextSeo
@@ -207,7 +214,29 @@ export default function Home() {
       />
       <TopMenu />
       <TopNav />
-      <Hero />
+      <Hero title={posts[0].title} image={image} />
     </Box>
   );
+}
+const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+// Get static props
+export async function getStaticProps() {
+  // Get a list of news articles from a free API
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const posts = await res.json();
+  await delay(5000);
+  // Get rando image from unsplash
+  const res2 = await fetch(
+    "https://source.unsplash.com/random/1024x768?nature"
+  );
+  const image = await res2.url;
+
+  console.log("SERVER SIDE RENDERING");
+  return {
+    props: {
+      posts: [posts[Math.floor(Math.random() * posts.length)]],
+      image: image,
+    },
+    revalidate: 10, // In seconds
+  };
 }

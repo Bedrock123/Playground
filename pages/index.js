@@ -16,8 +16,8 @@ import { useWindowScroll } from "@mantine/hooks";
 import { NextSeo } from "next-seo";
 import GearPhoto from "../public/gear.jpg";
 import Image from "next/image";
-
-function MenuLink({ link }: { link: string }) {
+import { CldImage, CldOgImage, CldUploadButton } from "next-cloudinary";
+function MenuLink({ link }) {
   return (
     <Text
       color="white"
@@ -107,7 +107,7 @@ function TopMenu() {
   );
 }
 
-function TopNavLink({ link }: { link: string }) {
+function TopNavLink({ link }) {
   return (
     <Text
       size="xs"
@@ -167,7 +167,7 @@ function TopNav() {
   );
 }
 
-const Hero = ({ title, image }: { title: string; image: string }) => {
+const Hero = ({ title, image }) => {
   return (
     <Container size={1024} pt={100}>
       <Title
@@ -190,24 +190,41 @@ const Hero = ({ title, image }: { title: string; image: string }) => {
         when you choose to check out with <br /> Apple Card Monthly
         Installments.<sup style={{ fontSize: "20px" }}>1</sup>
       </Title>
-
       <AspectRatio ratio={4 / 4}>
-        <Image
-          src={image}
-          alt="Picture of the gear"
-          priority
-          width={924}
-          height={924}
-          quality={3}
+        <CldImage
+          width="992"
+          height="992"
+          src="v1670557212/fernando-hernandez-y-vmHk8ys8c-unsplash_lawyqt.jpg"
+          alt="My Image"
+          autoColor={true}
+          placeholder="blur"
         />
       </AspectRatio>
     </Container>
   );
 };
 
-export default function Home({ posts, image }: { posts: any; image: any }) {
+export default function Home({ posts, image }) {
   return (
     <Box mih={"200vh"}>
+      <CldOgImage
+        src="v1670557212/fernando-hernandez-y-vmHk8ys8c-unsplash_lawyqt.jpg"
+        tint="100:0000FF:0p:FF1493:100p"
+        blur="2000"
+        overlays={[
+          {
+            text: {
+              color: "white",
+              fontFamily: "Source Sans Pro",
+              fontSize: 200,
+              fontWeight: "bold",
+              text: "Next Cloudinary",
+            },
+          },
+        ]}
+        alt="Next Cloudinary over picture of a turtle on top of a galaxy"
+        twitterTitle="Next Cloudinary"
+      />
       <NextSeo
         title="Apple Card - Monthly Installments"
         description="A short description goes here."
@@ -218,13 +235,13 @@ export default function Home({ posts, image }: { posts: any; image: any }) {
     </Box>
   );
 }
-const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 // Get static props
 export async function getStaticProps() {
   // Get a list of news articles from a free API
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const posts = await res.json();
-  await delay(5000);
+
   // Get rando image from unsplash
   const res2 = await fetch(
     "https://source.unsplash.com/random/1024x768?nature"
